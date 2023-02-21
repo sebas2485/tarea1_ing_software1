@@ -15,12 +15,14 @@ public class Archivo {
     public void leerArchivos() {
         int contador = 0;
         int cont = 0;
+        boolean flag = false;
         for (File archivo : carpeta.getRuta().listFiles()) {
             if (archivo.isFile()) {
                 String extension = obtenerExtension(archivo);
 
                 if (extension.equals("txt") || extension.equals("xml") || extension.equals("json")
                         || extension.equals("csv")) {
+                    flag = true;
                     try (BufferedReader lector = new BufferedReader(new FileReader(archivo))) {
                         String linea;
                         String[] separar;
@@ -39,16 +41,18 @@ public class Archivo {
                         System.err.println(
                                 "Error al leer el archivo " + archivo.getName() + ": " + e.getMessage());
                     }
+                } else {
+                    System.out.println("\nLa extension del archivo " + archivo.getName()
+                            + " es incorrecta, no es archivo de texto");
                 }
-
             }
-            System.out
-                    .println("El archivo: " + archivo.getName() + " Contiene la palabra: \"" + carpeta.getPalabra()
-                            + "\"" + cont);
+            if (flag == true)
+                System.out.println("\nEl archivo: " + archivo.getName() + " Contiene la palabra: \""
+                        + carpeta.getPalabra() + "\"" + cont);
         }
-
-        System.out.println("La palabra \"" + carpeta.getPalabra() + "\" aparece " + contador
-                + " veces en los archivos de texto en la carpeta " + carpeta);
+        if (flag == true)
+            System.out.println("\nLa palabra \"" + carpeta.getPalabra() + "\" aparece " + contador
+                    + " veces en los archivos de texto en la carpeta " + carpeta);
     }
 
     public String obtenerExtension(File archivo) {

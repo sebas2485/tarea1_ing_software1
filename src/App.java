@@ -9,7 +9,7 @@ public class App {
 
             do {
                 System.out.println("\nIngrese la ruta de la carpeta: ");
-                ruta = new File(sc.nextLine());// "C:\\Users\\HP\\OneDrive\\Escritorio\\U\\septimo\\Ing Software 1";
+                ruta = new File(sc.nextLine());// "C:\\Users\\HP\\OneDrive\\Escritorio\\U\\septimo\\Ing Software 1\\pruebas1";
                                                // Reemplazar por la ruta de la carpeta que se desea analizar
                 if (!(ruta.isDirectory())) {
                     System.out.println("\nEsta no es una ruta de carpeta");
